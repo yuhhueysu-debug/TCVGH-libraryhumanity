@@ -14,12 +14,29 @@ const Home: React.FC = () => {
   }, []);
 
   // Define the 4 categories we want to display
-  const categories = [
-    { title: '圖書館精選書籍', slug: '圖書館精選書籍', description: '閱讀經典，遇見醫療與人文的交會點。' },
-    { title: '電影時光', slug: '電影時光', description: '透過鏡頭，看見生命的悲歡離合。' },
-    { title: '讀者推薦', slug: '讀者推薦', description: '來自醫護人員與病患的真實感動與推薦。' },
-    { title: '寫景寫心', slug: '寫景寫心', description: '在醫療現場的縫隙中，紀錄光影與心境。' },
-  ];
+ const categories = [
+  {
+    title: "\u5716\u66F8\u9928\u7CBE\u9078\u66F8\u7C4D",
+    slug: "\u5716\u66F8\u9928\u7CBE\u9078\u66F8\u7C4D",
+    description: "\u95B1\u8B80\u7D93\u5178\uFF0C\u9047\u898B\u91AB\u7642\u8207\u4EBA\u6587\u7684\u4EA4\u6703\u9EDE\u3002",
+  },
+  {
+    title: "\u96FB\u5F71\u6642\u5149",
+    slug: "\u96FB\u5F71\u6642\u5149",
+    description: "\u900F\u904E\u93E1\u982D\uFF0C\u770B\u898B\u751F\u547D\u7684\u60B2\u6B61\u96E2\u5408\u3002",
+  },
+  {
+    title: "\u8B80\u8005\u63A8\u85A6",
+    slug: "\u8B80\u8005\u63A8\u85A6",
+    description: "\u4F86\u81EA\u91AB\u8B77\u4EBA\u54E1\u8207\u75C5\u60A3\u7684\u771F\u5BE6\u611F\u52D5\u8207\u63A8\u85A6\u3002",
+  },
+  {
+    title: "\u5BEB\u666F\u5BEB\u5FC3",
+    slug: "\u5BEB\u666F\u5BEB\u5FC3",
+    description: "\u5728\u91AB\u7642\u73FE\u5834\u7684\u7E2B\u9699\u4E2D\uFF0C\u7D00\u9304\u5149\u5F71\u8207\u5FC3\u5883\u3002",
+  },
+];
+
 
   return (
     <div className="space-y-16 pb-16">
@@ -35,8 +52,10 @@ const Home: React.FC = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="serif text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-top-4 duration-700">
-            醫學的溫度，<br className="md:hidden" />人文的深度
-          </h1>
+  {"\u91AB\u5B78\u7684\u6EAB\u5EA6\uFF0C"}
+  <br className="md:hidden" />
+  {"\u4EBA\u6587\u7684\u6DF1\u5EA6"}
+</h1>
         </div>
       </section>
 
