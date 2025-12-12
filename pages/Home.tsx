@@ -15,16 +15,16 @@ const Home: React.FC = () => {
 
   // Define the 4 categories we want to display
   const categories = [
-    { title: 'åœ–æ›¸é¤¨ç²¾é¸æ›¸ç±', slug: 'åœ–æ›¸é¤¨ç²¾é¸æ›¸ç±', description: 'é–±è®€ç¶“å…¸ï¼Œé‡è¦‹é†«ç™‚èˆ‡äººæ–‡çš„äº¤æœƒé»ã€‚' },
-    { title: 'é›»å½±æ™‚å…‰', slug: 'é›»å½±æ™‚å…‰', description: 'é€éé¡é ­ï¼Œçœ‹è¦‹ç”Ÿå‘½çš„æ‚²æ­¡é›¢åˆã€‚' },
-    { title: 'è®€è€…æ¨è–¦', slug: 'è®€è€…æ¨è–¦', description: 'ä¾†è‡ªé†«è­·äººå“¡èˆ‡ç—…æ‚£çš„çœŸå¯¦æ„Ÿå‹•èˆ‡æ¨è–¦ã€‚' },
-    { title: 'å¯«æ™¯å¯«å¿ƒ', slug: 'å¯«æ™¯å¯«å¿ƒ', description: 'åœ¨é†«ç™‚ç¾å ´çš„ç¸«éš™ä¸­ï¼Œç´€éŒ„å…‰å½±èˆ‡å¿ƒå¢ƒã€‚' },
+    { title: '¹Ï®ÑÀ]ºë¿ï®ÑÄy', slug: '¹Ï®ÑÀ]ºë¿ï®ÑÄy', description: '¾\Åª¸g¨å¡A¹J¨£ÂåÀø»P¤H¤åªº¥æ·|ÂI¡C' },
+    { title: '¹q¼v®É¥ú', slug: '¹q¼v®É¥ú', description: '³z¹LÃèÀY¡A¬İ¨£¥Í©Rªº´dÅwÂ÷¦X¡C' },
+    { title: 'ÅªªÌ±ÀÂË', slug: 'ÅªªÌ±ÀÂË', description: '¨Ó¦ÛÂåÅ@¤H­û»P¯f±wªº¯u¹ê·P°Ê»P±ÀÂË¡C' },
+    { title: '¼g´º¼g¤ß', slug: '¼g´º¼g¤ß', description: '¦bÂåÀø²{³õªºÁ_»Ø¤¤¡A¬ö¿ı¥ú¼v»P¤ß¹Ò¡C' },
   ];
 
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="relative bg-stone-900 text-white py-20 md:py-36 overflow-hidden">
+      <section className="relative bg-stone-900 text-white py-12 md:py-24 overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src="https://picsum.photos/1920/1080?grayscale&blur=2" 
@@ -35,11 +35,8 @@ const Home: React.FC = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="serif text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-top-4 duration-700">
-            é†«å­¸çš„æº«åº¦ï¼Œ<br className="md:hidden" />äººæ–‡çš„æ·±åº¦
+            Âå¾Çªº·Å«×¡A<br className="md:hidden" />¤H¤åªº²`«×
           </h1>
-          <p className="text-base md:text-xl text-stone-300 max-w-3xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-top-6 duration-700 delay-200">
-            åœ¨é€™è£¡ï¼Œæˆ‘å€‘æ¢ç´¢ç™½è¢ä¹‹ä¸‹çš„æ•…äº‹ã€‚çµåˆé†«å­¸å°ˆæ¥­èˆ‡äººæ–‡é—œæ‡·ï¼Œé‡æ–°æ€è€ƒç”Ÿå‘½ã€å€«ç†èˆ‡ç¤¾æœƒçš„äº¤ç¹”ã€‚
-          </p>
         </div>
       </section>
 
@@ -70,7 +67,7 @@ const Home: React.FC = () => {
                   to={`/articles?category=${encodeURIComponent(category.slug)}`} 
                   className="flex items-center gap-2 text-indigo-600 font-medium text-sm hover:gap-3 hover:text-indigo-800 transition-all px-4 py-2 rounded-lg border border-indigo-200 hover:bg-indigo-50"
                 >
-                  æŸ¥çœ‹æ›´å¤š <ArrowRight size={16} />
+                  ¬d¬İ§ó¦h <ArrowRight size={16} />
                 </Link>
               </div>
               
@@ -88,7 +85,7 @@ const Home: React.FC = () => {
           <blockquote className="serif text-2xl md:text-4xl italic text-indigo-800 leading-relaxed max-w-5xl mx-auto mb-6">
             "Wherever the art of Medicine is loved, there is also a love of Humanity."
           </blockquote>
-          <cite className="text-indigo-600 font-semibold text-lg not-italic">â€” Hippocrates</cite>
+          <cite className="text-indigo-600 font-semibold text-lg not-italic">¡X Hippocrates</cite>
         </section>
       </div>
     </div>
