@@ -15,10 +15,10 @@ const Home: React.FC = () => {
 
   // Define the 4 categories we want to display
   const categories = [
-    { title: '¹Ï®ÑÀ]ºë¿ï®ÑÄy', slug: '¹Ï®ÑÀ]ºë¿ï®ÑÄy', description: '¾\Åª¸g¨å¡A¹J¨£ÂåÀø»P¤H¤åªº¥æ·|ÂI¡C' },
-    { title: '¹q¼v®É¥ú', slug: '¹q¼v®É¥ú', description: '³z¹LÃèÀY¡A¬Ý¨£¥Í©Rªº´dÅwÂ÷¦X¡C' },
-    { title: 'ÅªªÌ±ÀÂË', slug: 'ÅªªÌ±ÀÂË', description: '¨Ó¦ÛÂåÅ@¤H­û»P¯f±wªº¯u¹ê·P°Ê»P±ÀÂË¡C' },
-    { title: '¼g´º¼g¤ß', slug: '¼g´º¼g¤ß', description: '¦bÂåÀø²{³õªºÁ_»Ø¤¤¡A¬ö¿ý¥ú¼v»P¤ß¹Ò¡C' },
+    { title: '?î¡½î­ æ“—å‡½ç§»?è±¢î­ è?, slug: '?î¡½î­ æ“—å‡½ç§»?è±¢î­ è?, description: '?æ¢¯?è¬îš¥ï†‚åš—ï—¾?é–¬ï•¡ïˆ’?î¿›?éˆ­ç®¸??ï„‘æ¼±?ï¹??? },
+    { title: '?é¤ƒè”£?î¿˜?', slug: '?é¤ƒè”£?î¿˜?', description: '?îµ??âŠ¿î¹¦åš—ï—¼?é–¬ï•Ÿ??è³œ??è„«è¿­?ï¼·??? },
+    { title: 'éœˆÂ€?ï†°î—??, slug: 'éœˆÂ€?ï†°î—??, description: 'é˜ï‰ïŠ®?æ€¨é¢¨éˆ­ç®î™¡?ï‹«?????î¸ç¥•?î¸??ï‹ªî—?è‰¾Â€? },
+    { title: 'æ’–æ€¥î¨æ’–æ€ ?', slug: 'æ’–æ€¥î¨æ’–æ€ ?', description: '?åˆ¸ïˆ’?î¿šîŠ?æ¸¡?è®æ?éŠå“¨?èÂ€?ï„’?æ•¶æ¢¯?æ•¹ïµ??? },
   ];
 
   return (
@@ -35,8 +35,7 @@ const Home: React.FC = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="serif text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-top-4 duration-700">
-            Âå¾Çªº·Å«×¡A<br className="md:hidden" />¤H¤åªº²`«×
-          </h1>
+            ?æ€ é£›?ï„“æ¾ˆæ‘¨ä½—?<br className="md:hidden" />éˆ­ç®¸??ï„“æ¥›æ‘¨?          </h1>
         </div>
       </section>
 
@@ -67,7 +66,7 @@ const Home: React.FC = () => {
                   to={`/articles?category=${encodeURIComponent(category.slug)}`} 
                   className="flex items-center gap-2 text-indigo-600 font-medium text-sm hover:gap-3 hover:text-indigo-800 transition-all px-4 py-2 rounded-lg border border-indigo-200 hover:bg-indigo-50"
                 >
-                  ¬d¬Ý§ó¦h <ArrowRight size={16} />
+                  ?äº¦??æ¸¸? <ArrowRight size={16} />
                 </Link>
               </div>
               
@@ -85,7 +84,7 @@ const Home: React.FC = () => {
           <blockquote className="serif text-2xl md:text-4xl italic text-indigo-800 leading-relaxed max-w-5xl mx-auto mb-6">
             "Wherever the art of Medicine is loved, there is also a love of Humanity."
           </blockquote>
-          <cite className="text-indigo-600 font-semibold text-lg not-italic">¡X Hippocrates</cite>
+          <cite className="text-indigo-600 font-semibold text-lg not-italic">??Hippocrates</cite>
         </section>
       </div>
     </div>

@@ -4,38 +4,34 @@ const About: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div className="text-center mb-16">
-        <h1 className="serif text-4xl md:text-5xl font-bold text-stone-900 mb-6">關於我們</h1>
+        <h1 className="serif text-4xl md:text-5xl font-bold text-stone-900 mb-6">???/h1>
         <div className="w-24 h-1.5 bg-indigo-600 mx-auto rounded-full"></div> {/* Thicker divider */}
       </div>
 
       <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-stone-100 space-y-10">
         <section>
-          <h2 className="serif text-2xl font-bold text-stone-800 mb-4">我們的使命</h2>
+          <h2 className="serif text-2xl font-bold text-stone-800 mb-4">??雿踹</h2>
           <p className="text-stone-600 leading-relaxed text-lg">
-            「醫學人文都在這」是一個致力於連結醫療專業與人文素養的平台。我們深信，優秀的醫療不僅仰賴精湛的技術，更需要溫暖的人性關懷。透過分享醫學歷史、倫理討論、文學作品與藝術療癒，我們希望為忙碌的醫療環境注入一股清流，喚醒對生命的初心。
-          </p>
+            ?摮訾犖??券銝??????怎?撠平?犖??擗?撟喳???楛靽∴??芰?????趕鞈渡移皝??銵??湧?閬澈??鈭箸折??瑯??澈?怠飛甇瑕?怎?閮???摮訾???????嚗????敹???憓釣?乩??⊥?瘚???撠??賜?????          </p>
         </section>
 
         <div className="grid md:grid-cols-2 gap-8 py-8 border-y border-stone-100"> {/* Added top/bottom border */}
           <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-100"> {/* Added border */}
-            <h3 className="font-bold text-indigo-900 mb-2 text-lg">給醫療人員</h3>
+            <h3 className="font-bold text-indigo-900 mb-2 text-lg">蝯阡?犖??/h3>
             <p className="text-indigo-800 text-base"> {/* Adjusted text color and size */}
-              提供反思的空間，緩解職業倦怠，在人文中尋找支持的力量。
-            </p>
+              ????蝛粹?嚗楨閫?璆剖行??其犖?葉撠?舀?????            </p>
           </div>
           <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-100"> {/* Added border */}
-            <h3 className="font-bold text-indigo-900 mb-2 text-lg">給大眾</h3>
+            <h3 className="font-bold text-indigo-900 mb-2 text-lg">蝯血之??/h3>
             <p className="text-indigo-800 text-base"> {/* Adjusted text color and size */}
-              理解醫療的不確定性與極限，建立更健康的醫病關係與生命觀。
-            </p>
+              ?圾?怎???蝣箏??扯?璆菟?嚗遣蝡?亙熒???靽??閫??            </p>
           </div>
         </div>
 
         <section>
-          <h2 className="serif text-2xl font-bold text-stone-800 mb-4">聯絡我們</h2>
+          <h2 className="serif text-2xl font-bold text-stone-800 mb-4">?舐窗??/h2>
           <p className="text-stone-600 leading-relaxed mb-6">
-            如果您有任何投稿建議、合作提案或回饋，歡迎隨時與我們聯繫。我們期待聽到您的聲音。
-          </p>
+            憒??冽?隞颱??阮撱箄降??雿?獢???嚗迭餈???蝜怒???敺?唳??喋?          </p>
           <a 
             href="mailto:contact@medicalhumanities.tw" 
             className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors shadow-md"
