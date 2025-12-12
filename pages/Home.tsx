@@ -15,10 +15,10 @@ const Home: React.FC = () => {
 
   // Define the 4 categories we want to display
   const categories = [
-    { title: '?擗函移?豢蝐?, slug: '?擗函移?豢蝐?, description: '?梯?蝬嚗?閬??鈭箸??漱???? },
-    { title: '?餃蔣??', slug: '?餃蔣??', description: '???⊿嚗?閬??賜??脫迭?Ｗ??? },
-    { title: '霈???, slug: '霈???, description: '靘?怨風鈭箏??????祕????艾? },
-    { title: '撖急撖怠?', slug: '撖急撖怠?', description: '?券??渡?蝮恍?銝哨?蝝??敶梯?敹??? },
+    { title: '圖書館精選書籍', slug: '圖書館精選書籍', description: '閱讀經典，遇見醫療與人文的交會點。' },
+    { title: '電影時光', slug: '電影時光', description: '透過鏡頭，看見生命的悲歡離合。' },
+    { title: '讀者推薦', slug: '讀者推薦', description: '來自醫護人員與病患的真實感動與推薦。' },
+    { title: '寫景寫心', slug: '寫景寫心', description: '在醫療現場的縫隙中，紀錄光影與心境。' },
   ];
 
   return (
@@ -35,7 +35,8 @@ const Home: React.FC = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="serif text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-top-4 duration-700">
-            ?怠飛?澈摨佗?<br className="md:hidden" />鈭箸??楛摨?          </h1>
+            醫學的溫度，<br className="md:hidden" />人文的深度
+          </h1>
         </div>
       </section>
 
@@ -66,7 +67,7 @@ const Home: React.FC = () => {
                   to={`/articles?category=${encodeURIComponent(category.slug)}`} 
                   className="flex items-center gap-2 text-indigo-600 font-medium text-sm hover:gap-3 hover:text-indigo-800 transition-all px-4 py-2 rounded-lg border border-indigo-200 hover:bg-indigo-50"
                 >
-                  ?亦??游? <ArrowRight size={16} />
+                  查看更多 <ArrowRight size={16} />
                 </Link>
               </div>
               
@@ -84,7 +85,7 @@ const Home: React.FC = () => {
           <blockquote className="serif text-2xl md:text-4xl italic text-indigo-800 leading-relaxed max-w-5xl mx-auto mb-6">
             "Wherever the art of Medicine is loved, there is also a love of Humanity."
           </blockquote>
-          <cite className="text-indigo-600 font-semibold text-lg not-italic">??Hippocrates</cite>
+          <cite className="text-indigo-600 font-semibold text-lg not-italic">— Hippocrates</cite>
         </section>
       </div>
     </div>
