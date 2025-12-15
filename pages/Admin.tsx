@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Article } from '../types';
 import { getArticles, saveArticle, deleteArticle, generateId, exportData, importData } from '../services/dataService';
-import { Plus, Edit, Trash2, Save, X, Search, Upload, Image as ImageIcon, Loader2, Link as LinkIcon, AlertCircle, CheckCircle2, Download, FileJson, AlertTriangle, Code, Copy, Check, FileCode, Film, FileText, Info } from 'lucide-react';
+import { Plus, Edit, Trash2, Save, X, Search, Upload, Image as ImageIcon, Loader2, Link as LinkIcon, AlertCircle, CheckCircle2, Download, FileJson, AlertTriangle, Code, Copy, Check, FileCode, Film, FileText, Info, LogOut, User, Key } from 'lucide-react';
 
 // Helper function to compress image
 const compressImage = (file: File): Promise<string> => {
@@ -81,6 +81,13 @@ const processImageUrl = (url: string): string => {
 };
 
 const Admin: React.FC = () => {
+  // Auth State
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loginUser, setLoginUser] = useState('');
+  const [loginPass, setLoginPass] = useState('');
+  const [loginError, setLoginError] = useState('');
+
+  // Admin Logic State
   const [articles, setArticles] = useState<Article[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -98,7 +105,7 @@ const Admin: React.FC = () => {
     id: '',
     title: '',
     content: '',
-    summary: '', // Initialize new summary field
+    summary: '',
     author: '',
     date: new Date().toISOString().split('T')[0],
     category: '圖書館精選書籍',
@@ -106,6 +113,12 @@ const Admin: React.FC = () => {
   });
 
   useEffect(() => {
+    // Check authentication on mount
+    const auth = sessionStorage.getItem('admin_authenticated');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+
     // Listen for custom event to refresh data when localStorage changes
     const handleArticlesUpdate = () => {
       refreshData();
@@ -119,12 +132,35 @@ const Admin: React.FC = () => {
     };
   }, []);
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // 簡單的帳密驗證 (Hardcoded credentials)
+    // 您可以在這裡修改預設帳號密碼
+    const ADMIN_USER = 'admin';
+    const ADMIN_PASS = 'medical888';
+
+    if (loginUser === ADMIN_USER && loginPass === ADMIN_PASS) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('admin_authenticated', 'true');
+      setLoginError('');
+    } else {
+      setLoginError('帳號或密碼錯誤');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('admin_authenticated');
+    setLoginUser('');
+    setLoginPass('');
+    setIsEditing(false); // Reset editing state
+  };
+
   const refreshData = () => {
     setArticles(getArticles());
   };
 
   const handleEdit = (article: Article) => {
-    // Ensure summary is initialized for editing even if it was undefined
     setCurrentArticle({ ...article, summary: article.summary || '' }); 
     setImgLoadError(false);
     setIsEditing(true);
@@ -143,7 +179,7 @@ const Admin: React.FC = () => {
       id: generateId(),
       title: '',
       content: '',
-      summary: '', // Initialize summary for new articles
+      summary: '', 
       author: '網站管理員',
       date: new Date().toISOString().split('T')[0],
       category: '圖書館精選書籍',
@@ -156,10 +192,9 @@ const Admin: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Clean up summary if not '電影時光' to avoid saving empty/unused field
     const articleToSave = currentArticle.category === '電影時光' 
       ? currentArticle
-      : { ...currentArticle, summary: undefined }; // Remove summary if not a movie article
+      : { ...currentArticle, summary: undefined };
 
     const success = saveArticle(articleToSave);
     if (success) {
@@ -173,9 +208,7 @@ const Admin: React.FC = () => {
     const { name, value } = e.target;
     
     if (name === 'imageUrl') {
-      // Reset error state when URL changes
       setImgLoadError(false);
-      // Auto-process URL when typing/pasting
       const processedUrl = processImageUrl(value);
       setCurrentArticle(prev => ({ ...prev, [name]: processedUrl }));
     } else {
@@ -205,7 +238,6 @@ const Admin: React.FC = () => {
     fileInputRef.current?.click();
   };
 
-  // Backup & Restore Handlers
   const handleBackup = () => {
     const dataStr = exportData();
     const blob = new Blob([dataStr], { type: 'application/json' });
@@ -234,7 +266,7 @@ const Admin: React.FC = () => {
         const jsonStr = event.target?.result as string;
         const success = importData(jsonStr);
         if (success) {
-          refreshData(); // Refresh articles after successful import
+          refreshData();
           alert('資料還原成功！');
         } else {
           alert('資料還原失敗，請確認檔案格式是否正確。');
@@ -242,16 +274,13 @@ const Admin: React.FC = () => {
       };
       reader.readAsText(file);
     }
-    // Reset
     if (backupInputRef.current) backupInputRef.current.value = '';
   };
 
-  // Generate Constants Code
   const generateConstantsCode = () => {
-    // Filter out undefined summary fields for cleaner JSON output
     const articlesForExport = articles.map(article => {
       const { summary, ...rest } = article;
-      return summary !== undefined ? article : rest; // Only include summary if it exists
+      return summary !== undefined ? article : rest;
     });
 
     const json = JSON.stringify(articlesForExport, null, 2);
@@ -276,7 +305,6 @@ export const NAV_LINKS = [
   };
 
   const handleCopySingleArticle = (article: Article) => {
-    // Only include fields from the Article interface, and summary only if it exists
     const articleToCopy: Article = {
       id: article.id,
       title: article.title,
@@ -286,7 +314,7 @@ export const NAV_LINKS = [
       category: article.category,
       imageUrl: article.imageUrl,
     };
-    if (article.summary !== undefined) { // Check for undefined specifically
+    if (article.summary !== undefined) {
       articleToCopy.summary = article.summary;
     }
     const json = JSON.stringify(articleToCopy, null, 2);
@@ -301,6 +329,78 @@ export const NAV_LINKS = [
     a.content.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // If not authenticated, show login screen
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center bg-stone-50 px-4">
+        <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl w-full max-w-md border border-stone-100 animate-in fade-in zoom-in-95 duration-300">
+          <div className="text-center mb-8">
+            <div className="bg-indigo-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-600">
+              <Key size={32} />
+            </div>
+            <h1 className="serif text-2xl font-bold text-stone-900 mb-2">後台管理登入</h1>
+            <p className="text-stone-500 text-sm">醫學人文網站內容管理系統</p>
+          </div>
+          
+          <form onSubmit={handleLogin} className="space-y-5">
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-stone-700 ml-1">帳號</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-400">
+                  <User size={18} />
+                </div>
+                <input
+                  type="text"
+                  value={loginUser}
+                  onChange={(e) => setLoginUser(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-stone-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                  placeholder="請輸入管理員帳號"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-stone-700 ml-1">密碼</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-400">
+                  <Key size={18} />
+                </div>
+                <input
+                  type="password"
+                  value={loginPass}
+                  onChange={(e) => setLoginPass(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-stone-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                  placeholder="請輸入密碼"
+                  required
+                />
+              </div>
+            </div>
+
+            {loginError && (
+              <div className="flex items-center gap-2 text-rose-600 text-sm bg-rose-50 p-3 rounded-lg border border-rose-100">
+                <AlertCircle size={16} />
+                {loginError}
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              className="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-medium hover:bg-indigo-700 transition-colors shadow-sm mt-2"
+            >
+              登入系統
+            </button>
+          </form>
+          
+          <div className="mt-8 text-center text-xs text-stone-400">
+            &copy; Medical Humanities Hub Admin
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Authenticated View (Existing UI)
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-stone-50 min-h-screen">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -310,16 +410,25 @@ export const NAV_LINKS = [
              資料儲存於本機瀏覽器。為了避免資料遺失，請定期<button onClick={handleBackup} className="text-indigo-600 underline hover:text-indigo-800 font-medium">備份資料</button>。
           </p>
         </div>
-        {!isEditing && (
-          <div className="flex gap-2">
+        
+        <div className="flex flex-wrap gap-2 items-center">
+          <span className="text-sm text-stone-500 mr-2 hidden md:inline">管理員: {loginUser}</span>
+          {!isEditing && (
             <button 
               onClick={handleCreateNew}
-              className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm text-sm"
             >
-              <Plus size={18} /> 新增文章
+              <Plus size={18} /> <span className="hidden sm:inline">新增文章</span>
             </button>
-          </div>
-        )}
+          )}
+          <button 
+            onClick={handleLogout}
+            className="flex items-center gap-2 bg-white border border-stone-200 text-stone-600 px-4 py-2 rounded-lg hover:bg-stone-50 hover:text-rose-600 transition-colors shadow-sm text-sm"
+            title="登出系統"
+          >
+            <LogOut size={18} /> <span className="hidden sm:inline">登出</span>
+          </button>
+        </div>
       </div>
 
       {/* Warning Banner */}
